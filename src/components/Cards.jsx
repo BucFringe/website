@@ -16,7 +16,7 @@ function Cards() {
 
 const Card = ({ img, cardName, sets }) => (
     <div className='flex flex-col justify-center md:items-start w-full px-2 py-2'>
-      <div className='bg-grey-100 rounded overflow-hidden shadow-md flex-auto'>
+      <div className='bg-grey-100 rounded overflow-hidden shadow-md flex-auto hover:bg-gray-400'>
           <img src={ img } alt={ cardName }/>
           <div>
               <span className="font-bold">{ cardName }</span>
