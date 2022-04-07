@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     const handleClick = () => setNav(!nav)
-    const testToast = () => toast.error("ERROR - Not yet implemted", {position: "bottom-center"})
+    
     const { loginWithRedirect, logout } = useAuth0();
   return (
     <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg'>
@@ -25,15 +25,11 @@ const Navbar = () => {
                     </li>
                     <li>Collection</li>
                     <li>Inventory</li>
-                    <li>
-                        <Link to="profile">Profile</Link>
-                    </li>
                 </ul>
             </div>
             <div className='hidden md:flex pr-4'>
-                <button className='border-none bg-transparent text-black mr-4' onClick={() => loginWithRedirect()}>Sign In</button>
-                <button className='border-none bg-transparent text-black mr-4' onClick={() => logout({returnTo: 'http://localhost:3000'})}>Sign Out</button>
-                <button className='px-8 py-3' onClick={testToast}>Sign Up</button>
+                <ProfilePicture />
+                
             </div>
 
             <div className='md:hidden' onClick={handleClick}>
@@ -60,6 +56,27 @@ const Navbar = () => {
         </ul>
     </div>
   )
+}
+
+const ProfilePicture = () => {
+    const { user, isAuthenticated, loginWithRedirect, logout  } = useAuth0();
+    const testToast = () => toast.error("ERROR - Not yet implemted", {position: "bottom-center"})
+    if (isAuthenticated) {
+        return (
+            <div className='hidden md:flex pr-4'>
+                <Link to='profile'>
+                    <img src={user.picture} alt={user.name} className='rounded-full w-16'/>
+                </Link>
+                <button className='px-8 py-3' onClick={() => logout({returnTo: 'http://localhost:3000'})}>Sign Out</button>
+            </div>
+        )
+    }
+    else return (
+        <div>
+            <button className='border-none bg-transparent text-black mr-4' onClick={() => loginWithRedirect()}>Sign In</button>
+            <button className='px-8 py-3' onClick={testToast}>Sign Up</button>
+        </div>
+    )
 }
 
 export default Navbar

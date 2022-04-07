@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { data } from 'autoprefixer';
 
 const randomUserURL = "https://api.scryfall.com/cards/search?order=cmc&q=great";
 
