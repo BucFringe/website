@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { BrowserRouter } from "react-router-dom";
+import { Auth0Provider } from '@auth0/auth0-react';
 
-const queryClient = new QueryClient()
 ReactDOM.render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+  <BrowserRouter>
+    <Auth0Provider
+      domain='bucfringe.eu.auth0.com'
+      clientId='7MRMaGBYdhh26Guyuy4zUIdzJBroQ5f0'
+      redirectUri={window.location.origin}
+    >
       <App />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
-  </React.StrictMode>,
+    </Auth0Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
