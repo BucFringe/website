@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     const handleClick = () => setNav(!nav)
-    const testToast = () => toast.error("ERROR - Not yet implemted")
+    const testToast = () => toast.error("ERROR - Not yet implemted", {position: "bottom-center"})
   return (
     <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg'>
         <div><Toaster/></div>
